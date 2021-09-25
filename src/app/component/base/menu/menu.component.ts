@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  @Output() public sidenavToggle = new EventEmitter();
 
   constructor(private route: Router) { }
 
@@ -15,5 +16,9 @@ export class MenuComponent implements OnInit {
 
   redirectTo(redirect: string) {
     this.route.navigate([redirect]);
+  }
+
+  onToggleSidenav = () => {
+    this.sidenavToggle.emit();
   }
 }
